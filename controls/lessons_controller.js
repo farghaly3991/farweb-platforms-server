@@ -81,7 +81,6 @@ exports.fetchVideosForStudent = async(req, res) => {
         if(!user.units.includes(+req.params.section)) throw("غير مصرح لك بالوصول لهده الوحدة");
         /////////////////////////////////
         const units = user.units;
-        const siteData = await adminData.findOne({admin: 1});
         let videos = await Videos.find(obj);
         videos = [...videos].filter(vid => {
             if(!vid.showDate || vid.showDate == '') return true;
@@ -93,7 +92,7 @@ exports.fetchVideosForStudent = async(req, res) => {
         const section = await Sections.find({number: obj.section, stage: obj.stage});
         const coursePrice = section[0].price;
         
-        if(siteData.lessonCodes) {
+        if(adminData.lessonCodes) {
             filteredVideos = videos.map(vid => {return {_id: vid._id, name: vid.name, number: vid.number, locked: false, coded: true}});
         }
         else {
