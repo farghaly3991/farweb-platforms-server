@@ -33,7 +33,7 @@ exports.uploadVideo = async(req, res) => {
        }
         else if(req.params.id) {
             const updated = await Videos.updateOne({_id: req.params.id}, req.body);
-            if(updated.nModified == 1) res.json({done: true, id: req.params.id});
+            if(updated.n == 1) res.json({done: true, id: req.params.id});
             else throw("upload failed");
        }
         

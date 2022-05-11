@@ -107,6 +107,10 @@ const adminData = new mongoose.Schema({
   randomQuestions: {
     type: Boolean,
     default: true,
+  },
+  renewHost: {
+    type: Boolean,
+    default: false,
   }
 });
 

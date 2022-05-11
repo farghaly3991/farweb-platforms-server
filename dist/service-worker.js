@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.146aeac5bd886c43465da63bcd6a23bf.js"
+  "/precache-manifest.d613ed6bd25da81c37046b3542076e81.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "education-platform"});
