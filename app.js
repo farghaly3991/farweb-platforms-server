@@ -20,8 +20,9 @@ const {chatSocket} = require("./controls/chat_controller.js");
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
+// const db = "mongodb://localhost:27017/platform_1";
 // mongoose.connect("mongodb+srv://farghaly:farghaly_93@cluster0-i8la2.mongodb.net/E-shop",{ useNewUrlParser: true,  useUnifiedTopology: true  })
-mongoose.connect("mongodb://localhost:27017/platform_1",{ useNewUrlParser: true,  useUnifiedTopology: true  })
+mongoose.connect(process.env.database,{ useNewUrlParser: true,  useUnifiedTopology: true  })
 .then(() => {
   console.log('Connected successfully to database.............');
 }
