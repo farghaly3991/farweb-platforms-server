@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 // mongoose.connect("mongodb+srv://farghaly:farghaly_93@cluster0-i8la2.mongodb.net/E-shop",{ useNewUrlParser: true,  useUnifiedTopology: true  })
 mongoose.connect("mongodb://localhost:27017/platform_1",{ useNewUrlParser: true,  useUnifiedTopology: true  })
 .then(() => {
-  console.log('Connected successfully to database..');
+  console.log('Connected successfully to database.............');
 }
 ).catch(()=>{
   console.log('Connection failed ... !');
