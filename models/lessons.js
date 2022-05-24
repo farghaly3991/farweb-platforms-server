@@ -46,6 +46,7 @@ const videosSchema = new mongoose.Schema({
         userId: String,
         code: String,
         times: Number,
+        date: Date
     }]
 });
 module.exports = new mongoose.model('lessons', videosSchema);

@@ -356,13 +356,14 @@ exports.addLessonCode = async(req, res) => {
         const userId = req.params.userId;
         const lessonId = req.params.lessonId;
         const code = generateRandomString(8);
+        const date = new Date();
         const userCode = await Videos.findOne({_id: lessonId, "codes.userId": userId});
         if(userCode) {
-            const update = await Videos.updateOne({_id: lessonId, "codes.userId": userId}, {"$set": {"codes.$.code": code, "codes.$.times": 0}});
+            const update = await Videos.updateOne({_id: lessonId, "codes.userId": userId}, {"$set": {"codes.$.code": code, "codes.$.times": 0, "codes.$.date": date}});
             if(update.n == 0) throw("problem updating code");
         }
         else {
-            const newCode = await Videos.updateOne({_id: lessonId}, {$push: {codes: {userId, code, times: 0}}});
+            const newCode = await Videos.updateOne({_id: lessonId}, {$push: {codes: {userId, code, times: 0, date}}});
             if(!newCode) throw("problem generating code");
         }
         res.status(200).json({code});
@@ -394,6 +395,9 @@ exports.getLessonByCode = async(req, res) => {
         const lesson = await Videos.findOne({_id: lessonId, "codes.userId": userId, "codes.code": code});
         if(!lesson) throw("code");
         else {
+            const codeObj = [...lesson.codes].find(cod => cod.code == code);
+            if((new Date().getTime() - new Date(codeObj.date).getTime()) > (5 * 60 * 1000))
+                throw("انتهت مدة صلاحية الكود اطلب من المدرس كود اخر");
             const update = await Videos.updateOne({_id: lessonId, "codes.userId": userId}, {$inc: {"codes.$.times": 1}});
             console.log(update)
             res.status(200).json({lesson});

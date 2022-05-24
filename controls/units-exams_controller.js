@@ -239,7 +239,7 @@ exports.sendUnitExamSolutionByStudent = async(req, res) => {
         const examId = req.body.examId;
         //////////////////////////////////////////
         const solution = await Solutions.findOne({userId, examId});
-        if(solution) throw("لقدم قمت بأداء هذا الأمتحان بالفعل");
+        if(solution) throw("لقد قمت بأداء هذا الأمتحان بالفعل");
         //////////////////////////////////////////
         const studentSolution = req.body;
         const solutionModel = await SolutionModels.findOne({examId});

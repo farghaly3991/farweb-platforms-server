@@ -1,4 +1,4 @@
-const Users = require("../models/users");
+const Users = require("../models/users.js");
 const Messages = require("../models/messages");
 const {server} = require("../app.js");
 const { uploadFile, uploadImage } = require("../middlewares/file_upload");
